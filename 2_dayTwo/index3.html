@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const products = [{
+      title: 'apple',
+      id: 1,
+      type: 'fruit'
+    }, {
+      title: 'cabbage',
+      id: 2,
+      type: 'vegetables'
+    }, {
+      title: 'tomato',
+      id: 3,
+      type: 'vegetables'
+    }]
+    function MyProducts({ count, SetCount }) {
+      const listItems = products.map((product, index) => {
+        return (
+          <li
+            key={product.id}
+            style={{
+              color: product.type == 'fruit' ? 'yellow' : 'red'
+            }}
+            onClick={() => {
+              SetCount(count + 1)
+            }}
+          >
+            {product.title}
+          </li>
+        )
+      })
+      return (
+        <div>
+          <ul>{listItems}</ul>
+        </div>
+      )
+    }
+    function MyApp() {
+      const [count, SetCount] = React.useState(0);
+      return (
+        <div>
+          <p>{count}</p>
+
+          <MyProducts count={count} SetCount={SetCount} />
+          <MyProducts count={count} SetCount={SetCount} />
+        </div>
+      )
+    }
+    // 获取页面根节点
+    const RootNode = document.getElementById('root');
+    // 在根节点上 创建react根实例
+    const root = ReactDOM.createRoot(RootNode);
+    // 使用根实例渲染组件
+    root.render(React.createElement(MyApp));
+  </script>
+</body>
+
+</html>

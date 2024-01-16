@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Start</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    .test {
+      color: red;
+    }
+  </style>
+  <script type="text/babel">
+    const welcomeStr = 'welcome my test';
+    const styleObj = {
+      color: 'blue'
+    }
+    // const isLogin = true;
+    // 登录子组件
+    function Login() {
+      return (
+        <div>Already login</div>
+      )
+    }
+    function UnLogin() {
+      return (
+        <div>please login</div>
+      )
+    }
+    // 非登录子组件
+
+    function LikeButton() {
+      return React.createElement(
+        'button',
+        { onClick: () => { console.log('clicked') } },
+        'Like123'
+      )
+    }
+    // 按钮组件
+    function MyButton() {
+      return (
+        <button onClick={() => { console.log('123') }}>myButton123</button>
+      )
+    }
+    // 页面组件
+    function MyApp() {
+      const [isLogin, setLogin] = React.useState(false);
+      const content = isLogin ? <Login /> : <UnLogin />
+
+      return (
+        <div>
+          <h1 className="test">{welcomeStr}</h1>
+          <h2 style={styleObj}>hello world</h2>
+          <h2 style={{ color: 'yellow' }}>hello world</h2>
+          <button onClick={() => { setLogin(!isLogin) }}>Click to login</button>
+          {
+            content
+          }
+          <MyButton />
+        </div>
+      )
+    }
+
+    // 获取页面根节点
+    const RootNode = document.getElementById('root')
+    // ReactDOM.render(
+    //   React.createElement(LikeButton),
+    //   RootNode
+    // )
+    // 在根节点上 创建react根实例 
+    const root = ReactDOM.createRoot(RootNode)
+    // 使用根实例渲染组件
+    // root.render(React.createElement(LikeButton))
+    root.render(React.createElement(MyApp))
+  </script>
+</body>
+
+</html>

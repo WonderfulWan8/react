@@ -1,0 +1,38 @@
+.status {
+  margin-bottom: 10px;
+}
+
+.broad-row {
+  display: flex;
+}
+
+.square {
+  width: 80px;
+  height: 80px;
+  border: 1px solid black;
+  text-align: center;
+  line-height: 80px;
+}
+
+.game {
+  display: flex;
+}
+
+.game-board {
+  width: 400px;
+}
+
+.game-history {
+  flex: 1
+}
+.history-title{
+  margin-bottom: 10px;
+}
+.history-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.history-item{
+  margin-bottom: 10px;
+}
